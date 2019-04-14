@@ -1,7 +1,7 @@
-using api.Context.Entities;
+using Api.Context.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.Context
+namespace Api.Context
 {
     public class DoctoranosDbContext : DbContext
     {

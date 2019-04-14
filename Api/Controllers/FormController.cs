@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using api.Context.Entities;
-using api.Services;
+using Api.Services;
+using Api.Context.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api.Controllers
+namespace Api.Controllers
 {
-    [Route("api")]
+    [Route("Api")]
     public class FormController : Controller
     {
         private readonly IFormService _service;

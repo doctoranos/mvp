@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using api.Context;
-using api.Context.Entities;
+using Api.Context;
+using Api.Context.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace api.Services
+namespace Api.Services
 {
     public interface IFormService
     {

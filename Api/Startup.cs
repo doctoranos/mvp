@@ -1,5 +1,6 @@
-﻿using api.Context;
-using api.Services;
+﻿using Api.Context;
+using Api.Services;
+using Auth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 
-namespace api
+namespace Api
 {
     public class Startup
     {
@@ -21,13 +22,15 @@ namespace api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            
+            services.AddAuth(connectionString);
             services.AddMvc()
                 .AddJsonOptions(options => {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
-            services.AddDbContext<DoctoranosDbContext>(
-                options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DoctoranosDbContext>(options => options.UseNpgsql(connectionString));
 
             services.AddScoped<IFormService, FormService>();
             
@@ -49,6 +52,8 @@ namespace api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
+            
+            app.UseAuth();
 
             app.UseMvc();
         }
