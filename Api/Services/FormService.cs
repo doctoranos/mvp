@@ -61,8 +61,9 @@ namespace Api.Services
         public async Task DeleteAsync(int id)
         {
             var form = new Form{ Id = id };
+            
             _context.Attach(form);
-            _context.Forms.Remove(form);
+            _context.Entry(form).State = EntityState.Deleted;
 
             await _context.SaveChangesAsync();
         }
