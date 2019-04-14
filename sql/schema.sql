@@ -7,19 +7,15 @@ CREATE TABLE if not exists form (
 
 CREATE TABLE if not exists question (
     id SERIAL PRIMARY KEY,
-    form_id INTEGER,
-    body TEXT NOT NULL,
-
-    FOREIGN KEY (form_id) REFERENCES form (id)
+    form_id integer constraint fk_question_form_form_id references form on delete cascade,
+    body TEXT NOT NULL
 );
 
 CREATE TABLE if not exists completed_form (
     id SERIAL PRIMARY KEY,
-    form_id INTEGER,
+    form_id integer constraint fk_completed_form_form_form_id references form,
     body jsonb NOT NULL,
-    created_at timestamp DEFAULT now(),
-
-    FOREIGN KEY (form_id) REFERENCES form (id)
+    created_at timestamp DEFAULT now()
 );
 
 

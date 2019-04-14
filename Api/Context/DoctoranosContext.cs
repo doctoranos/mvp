@@ -30,6 +30,10 @@ namespace Api.Context
                 .WithMany(x => x.CompletedForms)
                 .HasForeignKey(x => x.FormId)
                 .HasPrincipalKey(x => x.Id);
+
+            modelBuilder.Entity<CompletedForm>()
+                .Property(x => x.Body)
+                .HasColumnType("jsonb");
         }
     }
 }
