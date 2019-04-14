@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace Api.Context.Entities
 {
@@ -18,6 +19,7 @@ namespace Api.Context.Entities
         [Column("created_at")] 
         public DateTime CreatedAt { get; set; }
 
+        [JsonIgnore]
         public Form Form { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace Api.Context.Entities
 {
@@ -13,6 +14,8 @@ namespace Api.Context.Entities
         public string Title { get; set; }
 
         public List<Question> Questions { get; set; }
+        
+        [JsonIgnore]
         public List<CompletedForm> CompletedForms { get; set; }
     }
 }

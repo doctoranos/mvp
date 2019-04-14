@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
-    [Route("api")]
+    [Route("api/forms")]
     public class FormController : Controller
     {
         private readonly IFormService _service;
@@ -16,25 +16,25 @@ namespace Api.Controllers
             _service = service;
         }
 
-        [HttpGet("forms")]
+        [HttpGet]
         public async Task<List<Form>> GetAllAsync()
         {
             return await _service.GetAllAsync();
         }
         
-        [HttpPost("forms")]
+        [HttpPost]
         public async Task<Form> InsertAsync([FromBody] Form form)
         {
             return await _service.InsertAsync(form);
         }
         
-        [HttpPut("forms/{id}")]
+        [HttpPut("{id}")]
         public async Task<Form> UpdateAsync(int id, [FromBody] Form form)
         {
             return await _service.UpdateAsync(id, form);
         }
         
-        [HttpDelete("forms/{id}")]
+        [HttpDelete("{id}")]
         public async Task DeleteAsync(int id)
         {
             await _service.DeleteAsync(id);

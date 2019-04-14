@@ -33,6 +33,7 @@ namespace Api
             services.AddDbContext<DoctoranosDbContext>(options => options.UseNpgsql(connectionString));
 
             services.AddScoped<IFormService, FormService>();
+            services.AddScoped<ICompletedFormService, CompletedFormService>();
             
             services.AddSwaggerGen(c =>
             {
