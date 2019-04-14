@@ -9,6 +9,7 @@ namespace Api.Services
     public interface IFormService
     {
         Task<List<Form>> GetAllAsync();
+        Task<Form> GetByIdAsync(int id);
         Task<Form> InsertAsync(Form form);
         Task<Form> UpdateAsync(int id, Form form);
         Task DeleteAsync(int id);
@@ -29,6 +30,14 @@ namespace Api.Services
                 .AsNoTracking()
                 .Include(x => x.Questions)
                 .ToListAsync();
+        }
+
+        public async Task<Form> GetByIdAsync(int id)
+        {
+            return await _context.Forms
+                .AsNoTracking()
+                .Include(x => x.Questions)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<Form> InsertAsync(Form form)

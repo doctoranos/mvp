@@ -34,6 +34,7 @@ namespace Api
 
             services.AddScoped<IFormService, FormService>();
             services.AddScoped<ICompletedFormService, CompletedFormService>();
+            services.AddScoped<ILoginService, LoginService>();
             
             services.AddSwaggerGen(c =>
             {

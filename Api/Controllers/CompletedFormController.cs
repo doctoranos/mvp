@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Context.Entities;
 using Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
+    [Authorize]
     [Route("api/completed-forms")]
     public class CompletedFormController : Controller
     {
@@ -22,6 +24,7 @@ namespace Api.Controllers
             return await _service.GetAllAsync();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<CompletedForm> InsertAsync([FromBody]CompletedForm form)
         {
